@@ -41,19 +41,26 @@ private static final Scanner SCANNER = new Scanner(System.in);
 
             switch(screen){
                 case DASHBOARD: 
-                    System.out.println("\t[1]. Add New Customer");
-                    System.out.println("\t[2]. Remove Existing Customer");
-                    System.out.println("\t[3]. Print Customer Details");
-                    System.out.println("\t[4]. Exit\n");
+                    System.out.println("\t[1]. create new Account");
+                    System.out.println("\t[2]. Deposits\"");
+                    System.out.println("\t[3]. Withdrawls");
+                    System.out.println("\t[4]. Transfer");
+                    System.out.println("\t[5]. Check Account Balance");
+                    System.out.println("\t[6]. Delete Account");
+                    System.out.println("\t[7]. Exit\n");
                     System.out.print("\tEnter an option to continue: ");
                     int option = SCANNER.nextInt();
                     SCANNER.nextLine();
 
                     switch (option){
                         case 1: screen = CREATE_NEW_ACCOUNT; break;
-                        case 2: screen = REMOVE_CUSTOMER; break;
-                        case 3: screen = PRINT_DETAILS; break;
-                        case 4: System.out.println(CLEAR); System.exit(0);
+                        case 2: screen = DEPOSITS; break;
+                        case 3: screen = WITHDRAWLS ; break;
+                        case 4: screen = TRANSFER ; break;
+                        case 5: screen = CHECK_ACCOUNT_BALANCE; break;
+                        case 6: screen = DELETE_ACCOUNT ; break;
+                        case 7: screen = WITHDRAWLS ; break;
+                        case 8: System.out.println(CLEAR); System.exit(0);
                         default: continue;
                     }
                     break;
