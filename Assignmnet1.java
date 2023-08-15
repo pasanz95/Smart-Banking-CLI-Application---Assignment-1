@@ -1,3 +1,4 @@
+import java.io.StringReader;
 import java.util.Scanner;
 
 public class Assignmnet1{
@@ -22,7 +23,13 @@ private static final Scanner SCANNER = new Scanner(System.in);
         final String ERROR_MSG = String.format("\t%s%s%s\n", COLOR_RED_BOLD, "%s", RESET);
         final String SUCCESS_MSG = String.format("\t%s%s%s\n", COLOR_GREEN_BOLD, "%s", RESET);
 
+        String[] DepositIds = new String[0];
+        String[] WithdrawalIds = new String[0];
+        String[] DepositterName = new String [0];
+        String[] WithdrawalsNmae = new String [0];
 
+        String screen = DASHBOARD;
+        
 
 
 
