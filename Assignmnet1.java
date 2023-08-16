@@ -32,7 +32,7 @@ private static final Scanner SCANNER = new Scanner(System.in);
         String[] withdrawalsNmae = new String [0];
 
         String screen = DASHBOARD;
-  
+  do{
         final String APP_TITLE = String.format("%s%s%s",
             COLOR_BLUE_BOLD, screen, RESET);
 
@@ -41,8 +41,8 @@ private static final Scanner SCANNER = new Scanner(System.in);
 
             switch(screen){
                 case DASHBOARD: 
-                    System.out.println("\t[1]. create new Account");
-                    System.out.println("\t[2]. Deposits\"");
+                    System.out.println("\t[1]. Create new Account");
+                    System.out.println("\t[2]. Deposits");
                     System.out.println("\t[3]. Withdrawls");
                     System.out.println("\t[4]. Transfer");
                     System.out.println("\t[5]. Check Account Balance");
@@ -51,7 +51,7 @@ private static final Scanner SCANNER = new Scanner(System.in);
                     System.out.print("\tEnter an option to continue: ");
                     int option = SCANNER.nextInt();
                     SCANNER.nextLine();
-
+                System.out.println(option);
                     switch (option){
                         case 1: screen = CREATE_NEW_ACCOUNT; break;
                         case 2: screen = DEPOSITS; break;
@@ -60,13 +60,16 @@ private static final Scanner SCANNER = new Scanner(System.in);
                         case 5: screen = CHECK_ACCOUNT_BALANCE; break;
                         case 6: screen = DELETE_ACCOUNT ; break;
                         case 7: System.out.println(CLEAR); System.exit(0);
-                        default: continue;
+                        default: break;
+                        
                     }
                     break;
 
                     case CREATE_NEW_ACCOUNT:
+
+                    System.out.println("create");
                     
-                    System.out.printf("\tAccount ID: S%03d \n", (accounts.length + 1));
+                    System.out.printf("\tAccount ID: S%05d \n", (accounts.length + 1));
                     String id;
                     String name;
                     boolean valid;
@@ -277,7 +280,7 @@ private static final Scanner SCANNER = new Scanner(System.in);
                             System.out.print("\n\tDo you want to try again? (Y/n)");
                             if (!SCANNER.nextLine().strip().toUpperCase().equals("Y")){
                                 screen = DASHBOARD;
-                                continue mainLoop;
+                            
                             }
                             System.out.println();
                         }
@@ -314,7 +317,7 @@ private static final Scanner SCANNER = new Scanner(System.in);
     
     
     
-    
+            }while(true);
     
     
 }
