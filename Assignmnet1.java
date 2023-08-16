@@ -25,11 +25,11 @@ private static final Scanner SCANNER = new Scanner(System.in);
         final String ERROR_MSG = String.format("\t%s%s%s\n", COLOR_RED_BOLD, "%s", RESET);
         final String SUCCESS_MSG = String.format("\t%s%s%s\n", COLOR_GREEN_BOLD, "%s", RESET);
 
-        String[] Account = new String[0];
-        String[] DepositIds = new String[0];
-        String[] WithdrawalIds = new String[0];
-        String[] DepositterName = new String [0];
-        String[] WithdrawalsNmae = new String [0];
+        String[] accounts = new String[0];
+        String[] depositIds = new String[0];
+        String[] withdrawalIds = new String[0];
+        String[] depositterName = new String [0];
+        String[] withdrawalsNmae = new String [0];
 
         String screen = DASHBOARD;
   
@@ -66,7 +66,7 @@ private static final Scanner SCANNER = new Scanner(System.in);
 
                     case CREATE_NEW_ACCOUNT:
                     
-                    System.out.printf("\tAccount ID: S%03d \n", (customer.length + 1));
+                    System.out.printf("\tAccount ID: S%03d \n", (accounts.length + 1));
                     String id;
                     String name;
                     boolean valid;
@@ -113,8 +113,8 @@ private static final Scanner SCANNER = new Scanner(System.in);
                                     break;
                                 }
                             }
-                            for (int i = 0; i < customerIds.length; i++) {
-                                if (customerIds[i].equals(id)){
+                            for (int i = 0; i < accounts.length; i++) {
+                                if (accounts[i].equals(id)){
                                     System.out.printf(ERROR_MSG, "Account Number already exists");
                                     valid = false;
                                     break;
@@ -130,7 +130,37 @@ private static final Scanner SCANNER = new Scanner(System.in);
 
                     case WITHDRAWLS :
 
-                    
+                    do {
+                        valid = true;
+                        System.out.print("\tEnter Account Number: ");  // C-ac
+                        id = SCANNER.nextLine().toUpperCase().strip();
+                        if (id.isBlank()){
+                            System.out.printf(ERROR_MSG, "ID can't be empty");
+                            valid = false;
+                        }else if (!id.startsWith("C-") || id.length() < 3){
+                            System.out.printf(ERROR_MSG, "Invalid ID format");
+                            valid = false;
+                        }else{
+                            String number = id.substring(2);
+                            for (int i = 0; i < number.length(); i++) {
+                                if (!Character.isDigit(number.charAt(i))){
+                                    System.out.printf(ERROR_MSG, "Invalid ID format");
+                                    valid = false;
+                                    break;
+                                }
+                            }
+                            for (int i = 0; i < accounts.length; i++) {
+                                if (accounts[i].equals(id)){
+                                    System.out.printf(ERROR_MSG, "Account Number already exists");
+                                    valid = false;
+                                    break;
+                                }
+                            }    
+                        }
+                    }while (!valid);
+    
+
+
 
 
 
@@ -152,8 +182,76 @@ private static final Scanner SCANNER = new Scanner(System.in);
 
 
                     case DELETE_ACCOUNT :
-    
-    }
+                    
+                    do {
+                        valid = true;
+                        System.out.print("\tEnter the Account Number to delete: ");
+                        id = SCANNER.nextLine().toUpperCase().strip();
+                        if (id.isBlank()){
+                            System.out.printf(ERROR_MSG, "ID can't be empty");
+                            valid = false;
+                        }else if (!id.startsWith("C-") || id.length() < 3){
+                            System.out.printf(ERROR_MSG, "Invalid ID format");
+                            valid = false;
+                        }else{
+                            String number = id.substring(2);
+                            for (int i = 0; i < number.length(); i++) {
+                                if (!Character.isDigit(number.charAt(i))){
+                                    System.out.printf(ERROR_MSG, "Invalid ID format");
+                                    valid = false;
+                                    break;
+                                }
+                            }
+                            boolean exists = false;
+                            for (int i = 0; i < accounts.length; i++) {
+                                if (accounts[i].equals(id)){
+                                    index = i;
+                                    exists = true;
+                                    break;
+                                }
+                            }    
+                            if (!exists){
+                                valid = false;
+                                System.out.printf(ERROR_MSG, "Customer ID does not exist");
+                            }
+                        }
+                        if (!valid) {
+                            System.out.print("\n\tDo you want to try again? (Y/n)");
+                            if (!SCANNER.nextLine().strip().toUpperCase().equals("Y")){
+                                screen = DASHBOARD;
+                                continue mainLoop;
+                            }
+                            System.out.println();
+                        }
+                    }while (!valid);
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+                }
     
     
     
