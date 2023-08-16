@@ -172,7 +172,35 @@ private static final Scanner SCANNER = new Scanner(System.in);
                     case TRANSFER:
 
 
-
+                    do {
+                        valid = true;
+                        System.out.print("\tEnter Ttansfer Account Number: ");  // C-ac
+                        id = SCANNER.nextLine().toUpperCase().strip();
+                        if (id.isBlank()){
+                            System.out.printf(ERROR_MSG, "ID can't be empty");
+                            valid = false;
+                        }else if (!id.startsWith("C-") || id.length() < 3){
+                            System.out.printf(ERROR_MSG, "Invalid ID format");
+                            valid = false;
+                        }else{
+                            String number = id.substring(2);
+                            for (int i = 0; i < number.length(); i++) {
+                                if (!Character.isDigit(number.charAt(i))){
+                                    System.out.printf(ERROR_MSG, "Invalid ID format");
+                                    valid = false;
+                                    break;
+                                }
+                            }
+                            for (int i = 0; i < accounts.length; i++) {
+                                if (accounts[i].equals(id)){
+                                    System.out.printf(ERROR_MSG, "Account Number already exists");
+                                    valid = false;
+                                    break;
+                                }
+                            }    
+                        }
+                    }while (!valid);
+    
 
 
 
@@ -180,6 +208,36 @@ private static final Scanner SCANNER = new Scanner(System.in);
 
                     case CHECK_ACCOUNT_BALANCE:
 
+
+                    do {
+                        valid = true;
+                        System.out.print("\tEnter Account Number: ");  // C-ac
+                        id = SCANNER.nextLine().toUpperCase().strip();
+                        if (id.isBlank()){
+                            System.out.printf(ERROR_MSG, "ID can't be empty");
+                            valid = false;
+                        }else if (!id.startsWith("C-") || id.length() < 3){
+                            System.out.printf(ERROR_MSG, "Invalid ID format");
+                            valid = false;
+                        }else{
+                            String number = id.substring(2);
+                            for (int i = 0; i < number.length(); i++) {
+                                if (!Character.isDigit(number.charAt(i))){
+                                    System.out.printf(ERROR_MSG, "Invalid ID format");
+                                    valid = false;
+                                    break;
+                                }
+                            }
+                            for (int i = 0; i < accounts.length; i++) {
+                                if (accounts[i].equals(id)){
+                                    System.out.printf(ERROR_MSG, "Account Number already exists");
+                                    valid = false;
+                                    break;
+                                }
+                            }    
+                        }
+                    }while (!valid);
+    
 
                     case DELETE_ACCOUNT :
                     
@@ -205,7 +263,7 @@ private static final Scanner SCANNER = new Scanner(System.in);
                             boolean exists = false;
                             for (int i = 0; i < accounts.length; i++) {
                                 if (accounts[i].equals(id)){
-                                    index = i;
+                                   // index = i;
                                     exists = true;
                                     break;
                                 }
