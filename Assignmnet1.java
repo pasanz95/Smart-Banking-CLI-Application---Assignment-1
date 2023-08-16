@@ -59,20 +59,99 @@ private static final Scanner SCANNER = new Scanner(System.in);
                         case 4: screen = TRANSFER ; break;
                         case 5: screen = CHECK_ACCOUNT_BALANCE; break;
                         case 6: screen = DELETE_ACCOUNT ; break;
-                        case 7: screen = WITHDRAWLS ; break;
-                        case 8: System.out.println(CLEAR); System.exit(0);
+                        case 7: System.out.println(CLEAR); System.exit(0);
                         default: continue;
                     }
                     break;
 
+                    case CREATE_NEW_ACCOUNT:
+                    
+                    System.out.printf("\tAccount ID: S%03d \n", (customer.length + 1));
+                    String id;
+                    String name;
+                    boolean valid;
 
 
+                    do{
+                        valid = true;
+                        System.out.print("\tEnter Customer Name: ");
+                        name = SCANNER.nextLine().strip();
+                        if (name.isBlank()){
+                            System.out.printf(ERROR_MSG, "Customer name can't be empty");
+                            valid = false;
+                            continue;
+                        }
+                        for (int i = 0; i < name.length(); i++) {
+                            if (!(Character.isLetter(name.charAt(i)) || 
+                                Character.isSpaceChar(name.charAt(i))) ) {
+                                System.out.printf(ERROR_MSG, "Invalid name");
+                                valid = false;
+                                break;
+                            }
+                        }
+                    }while(!valid);
 
 
+                    case DEPOSITS:
 
+                    do {
+                        valid = true;
+                        System.out.print("\tEnter Account Number: ");  // C-ac
+                        id = SCANNER.nextLine().toUpperCase().strip();
+                        if (id.isBlank()){
+                            System.out.printf(ERROR_MSG, "ID can't be empty");
+                            valid = false;
+                        }else if (!id.startsWith("C-") || id.length() < 3){
+                            System.out.printf(ERROR_MSG, "Invalid ID format");
+                            valid = false;
+                        }else{
+                            String number = id.substring(2);
+                            for (int i = 0; i < number.length(); i++) {
+                                if (!Character.isDigit(number.charAt(i))){
+                                    System.out.printf(ERROR_MSG, "Invalid ID format");
+                                    valid = false;
+                                    break;
+                                }
+                            }
+                            for (int i = 0; i < customerIds.length; i++) {
+                                if (customerIds[i].equals(id)){
+                                    System.out.printf(ERROR_MSG, "Account Number already exists");
+                                    valid = false;
+                                    break;
+                                }
+                            }    
+                        }
+                    }while (!valid);
     
     
-    
+
+
+
+
+                    case WITHDRAWLS :
+
+                    
+
+
+
+
+
+
+
+
+                    case TRANSFER:
+
+
+
+
+
+
+
+
+                    case CHECK_ACCOUNT_BALANCE:
+
+
+                    case DELETE_ACCOUNT :
     
     }
     
